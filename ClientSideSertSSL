@@ -1,0 +1,25 @@
+Create a Java KeyStore file 
+
+1 open jmeter bin folder
+2 generate jks file and password:                   keytool -keystore clientkeystore -genkey -alias client
+3 file clientkeystore is created, rename it to clientkeystore.jks
+4 import this clientkeystore.jks file to jmeter : 
+4.1 open system.properties file.
+4.2 uncomment the following lines, and change the file to match your values:
+ 	javax.net.ssl.keyStore=clientkeystore.jks
+	javax.net.ssl.keyStorePassword=passwordgoeshere
+
+(5 Done) change your HTTP sampler implementation to Java (instead of HC3.1 or HC4) in your jmx script= done already.
+
+6 run script: jmeter -n –t 2017BTS_PS.jmx -l 2017BTS_PS_results.jtl
+7 enter password what you setup in step 2 (needed if certificate imported not as in step 4.2 but as 		Jmeter>Option>SSLMamager>Select:clientkeystore.jks)
+
+
+
+
+
+
+
+helpful
+https://www.blazemeter.com/blog/how-set-your-jmeter-load-test-use-client-side-certificates
+https://docs.oracle.com/cd/E19509-01/820-3503/ggfen/
